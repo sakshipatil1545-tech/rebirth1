@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blindfold Rebirth | India's First One-Day Transformation Program</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a1a2e;
+            --secondary: #16213e;
+            --accent: #c89b3c;
+            --accent-light: #f0e6d2;
+            --light: #f8f9ff;
+            --text: #333333;
+            --text-light: #6c757d;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            background-color: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--accent), #e8b923);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            transform: rotate(-10deg);
+            transition: var(--transition);
+        }
+        
+        .logo:hover .logo-icon {
+            transform: rotate(0deg);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+            padding: 8px 0;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-light);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent), #e8b923);
+            color: var(--primary);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(200, 155, 60, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .cta-button:hover:before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(200, 155, 60, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.3s forwards;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.6s forwards;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.9s forwards;
+        }
+        
+        .hero-cta {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 1.2s forwards;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            right: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            right: 20%;
+            animation-delay: 5s;
+            animation-duration: 20s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 5%;
+            animation-delay: 10s;
+            animation-duration: 15s;
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+        
+        .section-label {
+            display: inline-block;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .section-title {
+            font-size: 3.2rem;
+            margin-bottom: 24px;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Problems Grid */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+        
+        .problem-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .problem-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), #e8b923);
+            transition: var(--transition);
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+        
+        .problem-card:hover:before {
+            width: 8px;
+        }
+        
+        .problem-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f8f9ff, #eef1ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+        
+        .problem-card:hover .problem-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: linear-gradient(135deg, var(--accent-light), #f8f0d5);
+        }
+        
+        .problem-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        .problem-card p {
+            color: var(--text-light);
+        }
+        
+        /* Stats */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+            margin-top: 80px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+        
+        /* Journey Timeline */
+        .journey-section {
+            background: linear-gradient(135deg, #f8f9ff, #eef1ff);
+        }
+        
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 80px;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            justify-content: flex-start;
+            padding-right: 50%;
+        }
+        
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+            padding-left: 50%;
+        }
+        
+        .timeline-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            top: 40px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #e8b923);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 2;
+            box-shadow: 0 5px 15px rgba(200, 155, 60, 0.4);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -20px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -20px;
+        }
+        
+        .timeline-step {
+            display: inline-block;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #f8f9ff, #eef1ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+        
+        .benefit-card:hover .benefit-icon {
+            background: linear-gradient(135deg, var(--accent-light), #f8f0d5);
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--primary);
+        }
+        
+        /* Registration CTA */
+        .registration-cta {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .registration-cta:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1518609878373-06d740f60d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+        }
+        
+        .registration-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .registration-title {
+            font-size: 3.5rem;
+            margin-bottom: 24px;
+            color: white;
+        }
+        
+        .registration-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .spots-remaining {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 24px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .footer-about p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 24px;
+        }
+        
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 8px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 24px;
+        }
+        
+        .social-links a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+            }
+            66% {
+                transform: translateY(20px) rotate(240deg);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 30px;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .timeline:before {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                padding-left: 80px !important;
+                padding-right: 0 !important;
+                justify-content: flex-start !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker {
+                left: 20px !important;
+                right: auto !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+            
+            .registration-title {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .problems-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Scroll Animation Classes */
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-eye-slash"></i>
+                </div>
+                <span>Blindfold Rebirth</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#problems">The Weight</a></li>
+                <li><a href="#journey">The Journey</a></li>
+                <li><a href="#benefits">Benefits</a></li>
+                <li><a href="#registration">Register</a></li>
+            </ul>
+            
+            <a href="#registration" class="cta-button">
+                <span>Book Your Spot</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-badge">INDIA'S FIRST - SINCE 2023</div>
+            <h1>Create Your Own Light</h1>
+            <p>India's First One-Day Blindfold Rebirth Program. A transformative residential immersion hosted by Motivational Chanakya (M.Mahendraa), philosopher, motivational speaker, and author of The 3C Effect.</p>
+            <div class="hero-cta">
+                <a href="#registration" class="cta-button">
+                    <span>Start Your Inner Unlock Now</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section id="problems">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Release The Burden</div>
+                <h2 class="section-title">The Weight You've Been Carrying</h2>
+                <p class="section-subtitle">Break free from what's been holding you back from living your fullest life</p>
+            </div>
+            
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Fear That Paralyzes</h3>
+                    <p>You know what you want but can't move forward. The fear whispers "not yet" every single time, keeping you stuck in hesitation.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-heart-broken"></i>
+                    </div>
+                    <h3>Emotional Pain</h3>
+                    <p>Past hurts live in your body. You've tried to move on, but the ache remains beneath the surface, stored in cellular memory.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Money Blocks</h3>
+                    <p>No matter how hard you work, abundance feels out of reach. Old stories keep replaying, keeping generalized patterns at play.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Deep Loneliness</h3>
+                    <p>Even in rooms full of people, you feel disconnected. The isolation is becoming unbearable, an existential disconnection.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Overthinking Loops</h3>
+                    <p>Your mind won't quiet. Analysis becomes paralysis. You're exhausted from your own thoughts, caught in normal exhaustion cycles.</p>
+                </div>
+                
+                <div class="problem-card">
+                    <div class="problem-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Relationship Wounds</h3>
+                    <p>Trust feels impossible. You keep attracting the same patterns, the same heartbreak, again and again—a pattern repetition cycle.</p>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Day Program</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">25</div>
+                    <div class="stat-label">Hours of Transformation</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Participants Only</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Spots Remaining</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="journey-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Transformation Process</div>
+                <h2 class="section-title">Your 25-Hour Rebirth Journey</h2>
+                <p class="section-subtitle">A carefully crafted journey for complete inner rebirth and transformation</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-step">Step 01</div>
+                        <h3>Arrival & Settling</h3>
+                        <p>Let go of the outside world and enter a safe, supportive space designed for deep transformation. Prepare mentally and emotionally for the journey ahead.</p>
+                    </div>
+                    <div class="timeline-marker">1</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-step">Step 02</div>
+                        <h3>Blindfold Immersion</h3>
+                        <p>Enter a deep meditative state guided by experts, removing visual distractions to turn your focus completely inward for profound self-discovery.</p>
+                    </div>
+                    <div class="timeline-marker">2</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-step">Step 03</div>
+                        <h3>Inner Exploration</h3>
+                        <p>Journey inward with guided processes to uncover and release deep-seated patterns, beliefs, and emotional blockages that have been holding you back.</p>
+                    </div>
+                    <div class="timeline-marker">3</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-step">Step 04</div>
+                        <h3>Breakthrough & Release</h3>
+                        <p>Experience emotional catharsis and release what no longer serves you. Let go of past hurts, fears, and limitations in a safe, supported environment.</p>
+                    </div>
+                    <div class="timeline-marker">4</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-step">Step 05</div>
+                        <h3>Vision & Clarity</h3>
+                        <p>Receive clear vision for your life path with renewed purpose and direction. Gain insights into your true calling and next steps forward.</p>
+                    </div>
+                    <div class="timeline-marker">5</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-step">Step 06</div>
+                        <h3>Rebirth & Integration</h3>
+                        <p>Step into your new self with tools and practices to integrate the transformation into daily life. Leave with a renewed sense of self and purpose.</p>
+                    </div>
+                    <div class="timeline-marker">6</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Your Transformation</div>
+                <h2 class="section-title">Key Benefits</h2>
+                <p class="section-subtitle">Experience profound transformation in just 25 hours with lasting impact</p>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Deep Life Clarity</h3>
+                    <p>See through illusions and align with your true purpose. Gain unprecedented clarity about your path and direction.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Stronger Inner Stability</h3>
+                    <p>Build unshakable inner strength and emotional resilience. Face life's challenges from a place of centered power.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3>Emotional Lightness</h3>
+                    <p>Release stored emotional pain and experience mental lightness. Feel freer, more open, and truly alive.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3>Clear Personal Direction</h3>
+                    <p>Gain clarity on your path and next steps in life. Make decisions with confidence and alignment.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Renewed Sense of Purpose</h3>
+                    <p>Rediscover your "why" and reconnect with what truly matters to you. Live with intention and meaning.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inner Discipline & Focus</h3>
+                    <p>Cultivate transformative mental clarity and the ability to concentrate deeply on what matters most to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration CTA -->
+    <section id="registration" class="registration-cta">
+        <div class="container registration-content">
+            <h2 class="registration-title">Ready for Your Rebirth?</h2>
+            <p class="registration-subtitle">Join India's first one-day blindfold rebirth program in Pune. Experience a transformation that reconnects you with your inner truth and awakens the light you've carried all along.</p>
+            
+            <div class="spots-remaining">
+                <i class="fas fa-exclamation-circle"></i> Only 9 spots remaining - 70% filled
+            </div>
+            
+            <a href="#" class="cta-button" style="background: white; color: var(--primary);">
+                <span>Secure Your Transformation Now</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            
+            <p style="margin-top: 30px; color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                <i class="fas fa-calendar-alt"></i> Next program: March 15-17, 2026 | 
+                <i class="fas fa-map-marker-alt"></i> Pune, India
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                            <i class="fas fa-eye-slash"></i>
+                        </div>
+                        <span>Blindfold Rebirth</span>
+                    </div>
+                    <p>India's First One-Day Blindfold Rebirth Program. A transformative residential immersion hosted by Motivational Chanakya (M.Mahendraa).</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#problems">The Weight You Carry</a></li>
+                        <li><a href="#journey">Transformation Journey</a></li>
+                        <li><a href="#benefits">Key Benefits</a></li>
+                        <li><a href="#registration">Register Now</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Program Details</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Safety & Protocols</a></li>
+                        <li><a href="#">What to Bring</a></li>
+                        <li><a href="#">Venue Information</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-heading">Contact</h3>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@blindfoldrebirth.com"><i class="fas fa-envelope"></i> info@blindfoldrebirth.com</a></li>
+                        <li><a href="tel:+911234567890"><i class="fas fa-phone"></i> +91 12345 67890</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra, India</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 Blindfold Rebirth Program. All rights reserved. | Created with <i class="fas fa-heart" style="color: var(--accent);"></i> by Motivational Chanakya
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animation for elements
+        function checkScroll() {
+            const elements = document.querySelectorAll('.problem-card, .stat-item, .timeline-item, .benefit-card');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-in');
+                }
+            });
+        }
+        
+        // Initial check
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animate stats with counting effect
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statsSection = document.getElementById('problems');
+            const sectionPosition = statsSection.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (sectionPosition < screenPosition) {
+                statNumbers.forEach(stat => {
+                    const finalValue = parseInt(stat.textContent);
+                    let currentValue = 0;
+                    const increment = finalValue / 50;
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            currentValue = finalValue;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(currentValue);
+                    }, 30);
+                });
+                
+                // Remove event listener after animation
+                window.removeEventListener('scroll', animateStats);
+            }
+        }
+        
+        window.addEventListener('scroll', animateStats);
+        
+        // Add hover effect to timeline markers
+        const timelineMarkers = document.querySelectorAll('.timeline-marker');
+        timelineMarkers.forEach(marker => {
+            marker.addEventListener('mouseenter', function() {
+                this.style.animation = 'pulse 0.5s ease';
+            });
+            
+            marker.addEventListener('animationend', function() {
+                this.style.animation = '';
+            });
+        });
+    </script>
+</body>
+</html>
